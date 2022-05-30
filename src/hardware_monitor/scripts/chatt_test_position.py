@@ -12,11 +12,13 @@ def talker():
         msg_position.logTime = rospy.Time.now()
         msg_position.level = 1
         msg_position.message = 'ok'
-        msg_position.latitude = 0
-        msg_position.longitude = 0
-        msg_position.yaw = 0
-        msg_position.roll = 0
-        msg_position.pitch = 0
+        msg_position.x = 1
+        msg_position.y = 1
+        #msg_position.latitude = 0
+        #msg_position.longitude = 0
+        #msg_position.yaw = 0
+        #msg_position.roll = 0
+        #msg_position.pitch = 0
 
         pub.publish(msg_position)
         rospy.loginfo('sent')

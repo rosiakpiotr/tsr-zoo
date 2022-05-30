@@ -7,3 +7,4 @@ bin/
 lib/
 build_isolated/
 devel_isolated/
+Tests/

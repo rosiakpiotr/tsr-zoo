@@ -3,16 +3,18 @@ import rospy
 from loggers.msg import SingleLogPosition
 
 def callback(msg_position):
-    msg = '%s\t[%s]\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (
+    msg = '%s\t[%s]\t%s\t%s\t%s\t%s' % (
         rospy.get_caller_id(),
         str(msg_position.logTime),
         str(msg_position.level),
         str(msg_position.message),
-        str(msg_position.latitude),
-        str(msg_position.longitude),
-        str(msg_position.yaw),
-        str(msg_position.roll),
-        str(msg_position.pitch)
+        str(msg_position.x),
+        str(msg_position.y)
+        #str(msg_position.latitude),
+        #str(msg_position.longitude),
+        #str(msg_position.yaw),
+        #str(msg_position.roll),
+        #str(msg_position.pitch)
     )
     rospy.loginfo(msg)
     #logToFile()

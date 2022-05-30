@@ -1,8 +1,10 @@
 time logTime
 uint8 level
 string message
-float64 latitude
-float64 longitude
-float64 yaw
-float64 roll
-float64 pitch
+float32 x
+float32 y
+#float32 latitude
+#float32 longitude
+#float32 yaw
+#float32 roll
+#float32 pitch
