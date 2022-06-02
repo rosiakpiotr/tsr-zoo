@@ -13,8 +13,6 @@ def talker():
         log_msg.level = 1
         log_msg.message = 'Test activity :D'
 
-        #log_msg = 'hello there :D'
-
         pub.publish(log_msg)
         rospy.loginfo('sent')
         rate.sleep()

@@ -69,10 +69,11 @@ add_service_files(
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  msgPack
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -162,6 +163,8 @@ include_directories(
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
   scripts/chatt_test_activity.py
+  scripts/catapult_server.py
+  scripts/TEST_catapuls_client.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

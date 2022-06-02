@@ -1,5 +1,6 @@
 string targetName
 msgPack/GeoPosition targetPos
 msgPack/GeoPosition robotPos
+bool launch
 ---
 LanuchInfo launchInfo
