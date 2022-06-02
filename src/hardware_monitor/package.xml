@@ -4,7 +4,7 @@
   <version>1.0.0</version>
   <description>The hardware_monitor package</description>
 
-  <maintainer email="234239@edu.p.lodz.pl">Witold</maintainer>
+  <maintainer email="234239@edu.p.lodz.pl">Witold Mikołajczyk</maintainer>
 
   <license>MIT</license>
 
@@ -24,5 +24,6 @@
   <exec_depend>loggers</exec_depend>
   <build_depend>msgPack</build_depend>
   <exec_depend>msgPack</exec_depend>
+  
   <export></export>
 </package>
