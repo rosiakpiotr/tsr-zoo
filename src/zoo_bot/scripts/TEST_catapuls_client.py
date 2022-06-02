@@ -4,9 +4,8 @@ from __future__ import print_function
 
 import sys
 import rospy
-from catapult.srv import CatapultData
-from msgPack.msg import GeoPosition
-from catapult.msg import *
+from zoo_bot.srv import CatapultData
+from zoo_bot.msg import GeoPosition
 
 def launch(lat1, lon1, lat2, lon2):
     rospy.wait_for_service('catapult')

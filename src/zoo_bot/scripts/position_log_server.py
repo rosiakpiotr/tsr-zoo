@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import rospy
-from loggers.msg import SingleLogPosition
+from zoo_bot.msg import SingleLogPosition
 
 def callback(msg_position):
     msg = '%s\t[%s]\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (

@@ -1,0 +1,6 @@
+string targetName
+zoo_bot/GeoPosition targetPos
+zoo_bot/GeoPosition robotPos
+bool launch
+---
+LanuchInfo launchInfo

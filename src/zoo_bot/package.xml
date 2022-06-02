@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>msgPack</name>
+  <name>zoo_bot</name>
   <version>1.0.0</version>
-  <description>The msgPack package</description>
+  <description>The zoo_bot package</description>
 
-  <maintainer email="234306@edu.p.lodz.pl">Mateusz Żyszkiewicz</maintainer>
+  <maintainer email="zoo_bot@todo.todo">a minecraft player</maintainer>
 
   <license>MIT</license>
 
@@ -20,6 +20,6 @@
   <exec_depend>std_msgs</exec_depend>
   <build_depend>message_generation</build_depend>
   <exec_depend>message_runtime</exec_depend>
-
+  
   <export></export>
 </package>

@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
-from catapult.srv import CatapultData, CatapultDataResponse
-from catapult.msg import LanuchInfo
-from msgPack.msg import *
+from zoo_bot.srv import CatapultData, CatapultDataResponse
+from zoo_bot.msg import LanuchInfo
+from zoo_bot.msg import SingleLog
 from haversine import haversine, Unit
-from loggers.msg import SingleLog
 import rospy
 
 def talker(success, reason):

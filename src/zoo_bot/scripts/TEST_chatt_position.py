@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import rospy
-from loggers.msg import SingleLogPosition
+from zoo_bot.msg import SingleLogPosition
 
 def talker():
     pub = rospy.Publisher('position_chatter', SingleLogPosition, queue_size=10)
