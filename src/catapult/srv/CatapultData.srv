@@ -1,0 +1,5 @@
+string targetName
+msgPack/GeoPosition targetPos
+msgPack/GeoPosition robotPos
+---
+LanuchInfo launchInfo

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>catapult</name>
+  <name>hardware_monitor</name>
   <version>1.0.0</version>
-  <description>The catapult package</description>
+  <description>The hardware_monitor package</description>
 
-  <maintainer email="234266@edu.p.lodz.pl">Piotr</maintainer>
+  <maintainer email="234239@edu.p.lodz.pl">Witold</maintainer>
 
   <license>MIT</license>
 
