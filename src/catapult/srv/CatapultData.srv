@@ -1,8 +1,5 @@
-string target
-float32 latitude
-float32 longitude
-float32 yaw
-float32 roll
-float32 pitch
+string targetName
+msgPack/GeoPosition targetPos
+msgPack/GeoPosition robotPos
 ---
-bool inRange
+LanuchInfo launchInfo

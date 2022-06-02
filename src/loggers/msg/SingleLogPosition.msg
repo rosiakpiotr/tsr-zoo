@@ -1,10 +1,4 @@
 time logTime
 uint8 level
 string message
-float32 x
-float32 y
-#float32 latitude
-#float32 longitude
-#float32 yaw
-#float32 roll
-#float32 pitch
+msgPack/GeoPosition robotPos

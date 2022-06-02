@@ -4,7 +4,7 @@
   <version>1.0.0</version>
   <description>The catapult package</description>
 
-  <maintainer email="234266@edu.p.lodz.pl">piotrek</maintainer>
+  <maintainer email="234266@edu.p.lodz.pl">Piotr</maintainer>
 
   <license>MIT</license>
 
@@ -22,6 +22,7 @@
   <exec_depend>message_runtime</exec_depend>
   <build_depend>loggers</build_depend>
   <exec_depend>loggers</exec_depend>
-
+  <build_depend>msgPack</build_depend>
+  <exec_depend>msgPack</exec_depend>
   <export></export>
 </package>
