@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import rospy
-from loggers.msg import SingleLog
+from zoo_bot.msg import SingleLog
 
 def talker():
     pub = rospy.Publisher('activity_chatter', SingleLog, queue_size=10)
@@ -12,8 +12,6 @@ def talker():
         log_msg.logTime = rospy.Time.now()
         log_msg.level = 1
         log_msg.message = 'Test activity :D'
-
-        #log_msg = 'hello there :D'
 
         pub.publish(log_msg)
         rospy.loginfo('sent')

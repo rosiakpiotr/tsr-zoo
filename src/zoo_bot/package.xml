@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>data_exchange_controller</name>
-  <version>0.0.0</version>
-  <description>The data_exchange_controller package</description>
+  <name>zoo_bot</name>
+  <version>1.0.0</version>
+  <description>The zoo_bot package</description>
 
-  <maintainer email="234239@edu.p.lodz.pl">Witold</maintainer>
+  <maintainer email="zoo_bot@todo.todo">a minecraft player</maintainer>
+
   <license>MIT</license>
+
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
@@ -16,5 +18,8 @@
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+  
   <export></export>
 </package>
