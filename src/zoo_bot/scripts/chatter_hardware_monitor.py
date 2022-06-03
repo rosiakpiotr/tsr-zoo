@@ -40,8 +40,8 @@ def talker():
             #         read            sensorID
             SensorData(1,               51),
             SensorData(0,               52),
-            SensorData(0.4,               53),
-            SensorData(1.53,               54),
+            SensorData(0.4,             53),
+            SensorData(1.53,            54),
 
             # distance sensors
             SensorData(float('inf'),    101),
