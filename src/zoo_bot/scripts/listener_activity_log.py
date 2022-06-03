@@ -8,6 +8,7 @@ def callback(msg_log):
 
 def listener():
     rospy.init_node('activity_listener', anonymous=True)
+    rospy.loginfo('now listening')
     rospy.Subscriber('activity_chatter', SingleLog, callback)
     rospy.spin()
 

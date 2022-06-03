@@ -51,7 +51,9 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   GeoPosition.msg
+  HardwareData.msg
   LanuchInfo.msg
+  SensorData.msg
   SingleLog.msg
   SingleLogPosition.msg
 )
@@ -162,9 +164,10 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
-  scripts/activity_log_server.py
-  scripts/catapult_server.py
-  scripts/position_log_server.py
+  scripts/chatter_hardware_monitor.py
+  scripts/listener_activity_log.py
+  scripts/listener_position_log.py
+  scripts/server_catapult.py
   scripts/TEST_catapuls_client.py
   scripts/TEST_chatt_activity.py
   scripts/TEST_chatt_position.py
