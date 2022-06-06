@@ -1,0 +1,4 @@
+GeoPosition setAngles
+float32 distance
+---
+bool done

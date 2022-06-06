@@ -62,6 +62,8 @@ add_message_files(
 add_service_files(
   FILES
   CatapultData.srv
+  Move.srv
+  RoutePlanner.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -168,9 +170,8 @@ catkin_install_python(PROGRAMS
   scripts/listener_activity_log.py
   scripts/listener_position_log.py
   scripts/server_catapult.py
-  scripts/TEST_catapuls_client.py
-  scripts/TEST_chatt_activity.py
-  scripts/TEST_chatt_position.py
+  scripts/server_movment.py
+  scripts/server_route_planner.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

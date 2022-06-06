@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import rospy
 from zoo_bot.msg import HardwareData, GeoPosition, SensorData, SingleLog
 
@@ -26,29 +27,31 @@ def collision(sensorsData):
 def talker():
     pub = rospy.Publisher('hardware_chatter', HardwareData, queue_size=10)
     rospy.init_node('hardware_talker', anonymous=True)
-    rate = rospy.Rate(1)
+    rate = rospy.Rate(100)
 
     msg_hardware = HardwareData()
     while not rospy.is_shutdown():
         msg_hardware.batteryLevel = 73.4141
-        msg_hardware.robotPos = GeoPosition(0, 0, 0, 0, 0, 0)
+        
+        # :)
+        msg_hardware.robotPos = GeoPosition(51.7524835, 19.4527542, 0, 0, 0, 0)
         msg_hardware.velocity = 0
 
         # simulating sensors
         sensorsData = [
             # collision sensors
             #         read            sensorID
-            SensorData(1,               51),
+            SensorData(0,               51),
             SensorData(0,               52),
-            SensorData(0.4,             53),
-            SensorData(1.53,            54),
+            SensorData(0,               53),
+            SensorData(0,               54),
 
             # distance sensors
             SensorData(float('inf'),    101),
             SensorData(float('inf'),    102),
             SensorData(256.352,         103),
             SensorData(float('inf'),    104),
-            SensorData(144.125,         105),
+            SensorData(3.125,          105),
         ]
         msg_hardware.sensorData = sensorsData
 
