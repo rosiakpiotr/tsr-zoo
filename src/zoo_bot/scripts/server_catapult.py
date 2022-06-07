@@ -1,30 +1,54 @@
 #!/usr/bin/env python
 
-from zoo_bot.srv import CatapultData, CatapultDataResponse
-from zoo_bot.msg import LanuchInfo
-from zoo_bot.msg import SingleLog
+from zoo_bot.srv import CatapultData, CatapultDataResponse, HardwareReq
+from zoo_bot.msg import LanuchInfo, SingleLog, HardwareData
 from haversine import haversine, Unit
-import rospy
 
-def talker(success, reason):
+import rospy, rosparam
+
+def hardware_clitent():
+    rospy.wait_for_service('hardware')
+    try:
+        request = rospy.ServiceProxy('hardware', HardwareReq)
+        response = request()
+        return response.hardwareData
+    except rospy.ServiceException as e:
+        print("Service call failed: %s" % e)
+
+def clear_shoot():
+    hardware_data = hardware_clitent()
+    for sensor in hardware_data.sensorData:
+        if sensor.sensorID > 100 and sensor.read < rosparam.get_param('catapult_save_lauch_range'):
+            return False
+    return True
+
+def talker(response, targetName):
     pub = rospy.Publisher('activity_chatter', SingleLog, queue_size=10)
     
     log_msg = SingleLog()
     log_msg.logTime = rospy.Time.now()
     log_msg.level = 1
 
-    status = ('failed', 'succeed')[success]
-    msg_reason = (' reason: %s' % (reason), '')[success]
-    log_msg.message = 'from catapult: launch %s%s' % (status, msg_reason)
+    status = ('failed', 'succeed')[not response.fail]
+    msg_reason = ('reason: %s' % response.failMsg, '')[not response.fail]
+    log_msg.message = 'from catapult: launch to %s %s, %s' % (targetName, status, msg_reason)
     pub.publish(log_msg)
+
+def log(response, targetName):
+    try:
+        talker(response, targetName)
+    except rospy.ROSInterruptException:
+        rospy.loginfo(rospy.ROSInterruptException)
 
 def distace(robtPos, targetPos):
     return haversine((robtPos.latitude, robtPos.longitude), (targetPos.latitude, targetPos.longitude), unit=Unit.METERS)
 
 
 def handle_catapult(request):
+    print("Dostałem")
+    hardware_data = hardware_clitent()
     response = LanuchInfo()
-    response.inRange = not (distace(request.robotPos, request.targetPos) > 70)
+    response.inRange = distace(hardware_data.robotPos, request.targetPos) < rosparam.get_param('catapult_range')
     
     if not request.launch:
         response.tryingToLauch = False
@@ -34,29 +58,30 @@ def handle_catapult(request):
         return CatapultDataResponse(response)
     
     response.tryingToLauch = True
-    # Chek if no one is standing in front of the robot
-    # if some one is standing in front of the robot stop launch and retur fail
 
     if not response.inRange:
         response.launched = False
         response.fail = True
-        response.failMsg = 'out of range'
-        try:
-            talker(False, response.failMsg)
-        except rospy.ROSInterruptException:
-            pass
+        response.failMsg = rosparam.get_param('catapult_out_of_range_msg')
+        log(response, request.targetName)
+        return CatapultDataResponse(response)
+
+    # Chek if no one is standing in front of the robot
+    # if some one is standing in front of the robot stop launch and retur fail
+
+    if not clear_shoot():
+        response.launched = False
+        response.fail = True
+        response.failMsg = rosparam.get_param('catapult_object_in_launch_range_msg')
+        log(response, request.targetName)
         return CatapultDataResponse(response)
 
     # Launch!
 
-    try:
-        talker(True, '')
-    except rospy.ROSInterruptException:
-        pass
-
     response.launched = True
     response.fail = False
     response.failMsg = ''
+    log(response, request.targetName)
 
     return CatapultDataResponse(response)
 

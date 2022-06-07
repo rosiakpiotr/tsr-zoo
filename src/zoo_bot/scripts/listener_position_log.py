@@ -1,13 +1,12 @@
 #!/usr/bin/env python
+
 import rospy
-from zoo_bot.msg import SingleLogPosition
+from zoo_bot.msg import HardwareData
 
 def callback(msg_position):
-    msg = '%s\t[%s]\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (
+    msg = '%s\t[%s]\t%s\t%s\t%s\t%s\t%s\t%s' % (
         rospy.get_caller_id(),
-        str(msg_position.logTime),
-        str(msg_position.level),
-        str(msg_position.message),
+        rospy.Time.now(),
         str(msg_position.robotPos.latitude),
         str(msg_position.robotPos.longitude),
         str(msg_position.robotPos.altitude),
@@ -19,10 +18,10 @@ def callback(msg_position):
     #logToFile()
 
 def listener():
-    rospy.init_node('position_listener', anonymous=True)
-    rospy.loginfo('now listening to position_chatter')
-    rospy.loginfo('caller_id\tdate_time\tlevel\tmsg\tlat\tlong\talt\tyaw\troll\tpitch')
-    rospy.Subscriber('position_chatter', SingleLogPosition, callback)
+    rospy.init_node('hardware_listener', anonymous=True)
+    rospy.loginfo('now listening to hardware_chatter')
+    rospy.loginfo('caller_id\tdate_time\tlat\tlong\talt\tyaw\troll\tpitch')
+    rospy.Subscriber('hardware_chatter', HardwareData, callback)
     rospy.spin()
 
 if __name__ == '__main__':
