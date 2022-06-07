@@ -27,7 +27,7 @@ def collision(sensorsData):
 def talker():
     pub = rospy.Publisher('hardware_chatter', HardwareData, queue_size=10)
     rospy.init_node('hardware_talker', anonymous=True)
-    rate = rospy.Rate(100)
+    rate = rospy.Rate(1)
 
     msg_hardware = HardwareData()
     while not rospy.is_shutdown():
