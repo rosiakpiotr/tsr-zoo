@@ -45,6 +45,7 @@ def distace(robtPos, targetPos):
 
 
 def handle_catapult(request):
+    print("Dostałem")
     hardware_data = hardware_clitent()
     response = LanuchInfo()
     response.inRange = distace(hardware_data.robotPos, request.targetPos) < rosparam.get_param('catapult_range')
@@ -61,7 +62,7 @@ def handle_catapult(request):
     if not response.inRange:
         response.launched = False
         response.fail = True
-        response.failMsg = 'out of range'
+        response.failMsg = rosparam.get_param('catapult_out_of_range_msg')
         log(response, request.targetName)
         return CatapultDataResponse(response)
 
@@ -71,7 +72,7 @@ def handle_catapult(request):
     if not clear_shoot():
         response.launched = False
         response.fail = True
-        response.failMsg = 'an object in launch range'
+        response.failMsg = rosparam.get_param('catapult_object_in_launch_range_msg')
         log(response, request.targetName)
         return CatapultDataResponse(response)
 
