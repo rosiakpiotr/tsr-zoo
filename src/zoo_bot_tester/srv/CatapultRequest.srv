@@ -1,0 +1,6 @@
+string targetName
+bool launch
+float32 lat
+float32 lon
+---
+zoo_bot/LanuchInfo launchInfo

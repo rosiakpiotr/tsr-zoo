@@ -3,7 +3,8 @@
 from zoo_bot.srv import CatapultData, CatapultDataResponse, HardwareReq
 from zoo_bot.msg import LanuchInfo, SingleLog, HardwareData
 from haversine import haversine, Unit
-import rospy
+
+import rospy, rosparam
 
 def hardware_clitent():
     rospy.wait_for_service('hardware')
@@ -17,7 +18,7 @@ def hardware_clitent():
 def clear_shoot():
     hardware_data = hardware_clitent()
     for sensor in hardware_data.sensorData:
-        if sensor.sensorID > 100 and sensor.read < 5:
+        if sensor.sensorID > 100 and sensor.read < rosparam.get_param('catapult_save_lauch_range'):
             return False
     return True
 
@@ -46,7 +47,7 @@ def distace(robtPos, targetPos):
 def handle_catapult(request):
     hardware_data = hardware_clitent()
     response = LanuchInfo()
-    response.inRange = distace(hardware_data.robotPos, request.targetPos) < 75.0
+    response.inRange = distace(hardware_data.robotPos, request.targetPos) < rosparam.get_param('catapult_range')
     
     if not request.launch:
         response.tryingToLauch = False
