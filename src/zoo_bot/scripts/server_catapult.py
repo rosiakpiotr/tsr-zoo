@@ -1,23 +1,22 @@
 #!/usr/bin/env python
 
-from zoo_bot.srv import CatapultData, CatapultDataResponse
-from zoo_bot.msg import LanuchInfo, SingleLog, HardwareData, GeoPosition
+from zoo_bot.srv import CatapultData, CatapultDataResponse, HardwareReq
+from zoo_bot.msg import LanuchInfo, SingleLog, HardwareData
 from haversine import haversine, Unit
 import rospy
 
-class hardwareData_subscriber:
-
-    msg = HardwareData()
-
-    def __init__(self):
-        self.image_sub = rospy.Subscriber("hardware_chatter", HardwareData, self.callback)
-
-    def callback(self, data):
-        self.msg = data
+def hardware_clitent():
+    rospy.wait_for_service('hardware')
+    try:
+        request = rospy.ServiceProxy('hardware', HardwareReq)
+        response = request()
+        return response.hardwareData
+    except rospy.ServiceException as e:
+        print("Service call failed: %s" % e)
 
 def clear_shoot():
-    _hds = hardwareData_subscriber()
-    for sensor in _hds.msg.sensorData:
+    hardware_data = hardware_clitent()
+    for sensor in hardware_data.sensorData:
         if sensor.sensorID > 100 and sensor.read < 5:
             return False
     return True
@@ -45,9 +44,9 @@ def distace(robtPos, targetPos):
 
 
 def handle_catapult(request):
-    _hds = hardwareData_subscriber()
+    hardware_data = hardware_clitent()
     response = LanuchInfo()
-    response.inRange = distace(_hds.msg.robotPos, request.targetPos) < 75.0
+    response.inRange = distace(hardware_data.robotPos, request.targetPos) < 75.0
     
     if not request.launch:
         response.tryingToLauch = False

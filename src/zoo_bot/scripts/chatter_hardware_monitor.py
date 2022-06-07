@@ -51,7 +51,7 @@ def talker():
             SensorData(float('inf'),    102),
             SensorData(256.352,         103),
             SensorData(float('inf'),    104),
-            SensorData(3.125,          105),
+            SensorData(3.125,           105),
         ]
         msg_hardware.sensorData = sensorsData
 

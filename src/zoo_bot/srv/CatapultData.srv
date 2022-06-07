@@ -1,5 +1,5 @@
 string targetName
-zoo_bot/GeoPosition targetPos
+GeoPosition targetPos
 bool launch
 ---
 LanuchInfo launchInfo
