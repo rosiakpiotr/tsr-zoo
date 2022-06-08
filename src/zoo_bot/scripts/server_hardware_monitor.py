@@ -26,7 +26,7 @@ def hardware_server_res(req):
         SensorData(float('inf'),    102),
         SensorData(256.352,         103),
         SensorData(float('inf'),    104),
-        SensorData(50.125,          105),
+        SensorData(5.125,           105),
     ]
     res_hardware.sensorData = sensorsData
 
