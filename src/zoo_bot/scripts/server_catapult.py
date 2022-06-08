@@ -45,7 +45,6 @@ def distace(robtPos, targetPos):
 
 
 def handle_catapult(request):
-    print("Dostałem")
     hardware_data = hardware_clitent()
     response = LanuchInfo()
     response.inRange = distace(hardware_data.robotPos, request.targetPos) < rosparam.get_param('catapult_range')

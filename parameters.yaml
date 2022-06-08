@@ -1,4 +1,4 @@
 catapult_range: 70
 catapult_save_lauch_range: 5
-catapult_out_of_range_msg: 'target is not in catapult\'s range'
+catapult_out_of_range_msg: 'target is not in catapults range'
 catapult_object_in_launch_range_msg: 'an object in launch range'
